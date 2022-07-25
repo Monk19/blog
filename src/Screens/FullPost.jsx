@@ -1,5 +1,5 @@
 import React from "react";
-
+import { allBlogPosts } from "./CreatePost";
 function FullPost({ post, blogDeSelect }) {
   console.log(post);
   return (
@@ -8,6 +8,7 @@ function FullPost({ post, blogDeSelect }) {
       <p className="fullpost-description ">{post?.blogDescription}</p>
       <button
         onClick={() => {
+          console.log(allBlogPosts);
           blogDeSelect();
         }}
       >
