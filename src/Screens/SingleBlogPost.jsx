@@ -19,13 +19,11 @@ const SingleBlogPost = ({ posts, blogSelect, index }) => {
   };
   const kissStupid = (x) => {
     if (allBlogPosts[index][x] > 0) {
-      allBlogPosts[index][x] += 1;
       setViewLikeStatusState((prev) => ({
         ...prev,
         [x]: (allBlogPosts[index][x] += 1),
       }));
     } else {
-      allBlogPosts[index][x] = 1;
       setViewLikeStatusState((prev) => ({
         ...prev,
         [x]: (allBlogPosts[index][x] = 1),
