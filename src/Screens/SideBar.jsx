@@ -17,10 +17,10 @@ const SideBar = memo(({ tog }) => {
       >
         {x.currentTheme ? "Dark Mode" : "Day Mode"}
       </button>
-      <Link to="/" style={Styles}>
+
+      <Link to="/storyboard" style={Styles}>
         story board
       </Link>
-
       <Link to="/most-viewed" style={Styles}>
         most viewed
       </Link>

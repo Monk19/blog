@@ -3,43 +3,42 @@ import CommonHeader from "./CommonHeader";
 import { allBlogPosts } from "./CreatePost";
 import FullPost from "./FullPost";
 import SingleBlogPost from "./SingleBlogPost";
-
+import { Outlet, Link, useParams, useLocation } from "react-router-dom";
 export default function Trending() {
-  const [blogViewStatus, setBlogViewStatus] = useState(false);
+  // let {}
+  // const [blogViewStatus, setBlogViewStatus] = useState(false);
   const [index, setIndex] = useState("");
-  console.log(allBlogPosts);
-  const Styles = {
-    visibility: blogViewStatus ? "hidden" : "visible",
-  };
-  const blogSelect = (index) => {
-    setBlogViewStatus(!blogViewStatus);
-    setIndex(index);
-  };
+  console.log(allBlogPosts, window.location.href);
+
+  // const blogSelect = (index) => {
+  //   setBlogViewStatus(!blogViewStatus);
+  //   setIndex(index);
+  // };
+
   return (
     <div className="Tending">
       <CommonHeader title={"Trending"} />
       <div>Trending</div>
 
-      {blogViewStatus ? (
-        <FullPost
-          ind={index}
-          post={allBlogPosts[index]}
-          blogDeSelect={blogSelect}
-        />
-      ) : (
-        <div className="blog-post" style={Styles}>
-          {allBlogPosts.map((post, index) => {
-            return (
+      <div className="blog-post">
+        {allBlogPosts.map((post, index) => {
+          return (
+            <Link to={`/storyboard/${index}`}>
               <SingleBlogPost
                 key={JSON.stringify(index)}
                 posts={post}
                 index={index}
-                blogSelect={blogSelect}
               />
-            );
-          })}
-        </div>
-      )}
+            </Link>
+          );
+        })}
+      </div>
+      <Outlet />
+      {/* <FullPost
+        ind={index}
+        post={allBlogPosts[index]}
+        blogDeSelect={blogSelect}
+      /> */}
     </div>
   );
 }
