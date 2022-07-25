@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { ThemeContext } from "./Screens/SideBar";
+import { useState, useContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import About from "./Screens/Trending";
+import Profile from "./Screens/CreatePost";
+import StoryBoard from "./Screens/StoryBoard";
+import Trending from "./Screens/Trending";
+import CreatePost from "./Screens/CreatePost";
+import MostViewed from "./Screens/MostViewed";
+import MyView from "./Screens/MyView";
 function App() {
+  const [currentTheme, setCurrentTheme] = useState(true);
+
+  const themeToggler = () => {
+    setCurrentTheme(!currentTheme);
+  };
+  const contextValue = { currentTheme, themeToggler };
+
+  const Style = {
+    backgroundColor: currentTheme ? "#333" : "#ccc",
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={contextValue}>
+      <div className="App" style={Style}>
+        <Routes>
+          <Route path="/" element={<StoryBoard />}>
+            <Route index element={<Trending />} />
+            <Route path="/create-post" element={<CreatePost />} />
+            <Route path="/most-viewed" element={<MostViewed />} />
+            <Route path="/my-view" element={<MyView />} />
+          </Route>
+        </Routes>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
