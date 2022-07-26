@@ -9,6 +9,9 @@ import Trending from "./Screens/Trending";
 import CreatePost from "./Screens/CreatePost";
 import MostViewed from "./Screens/MostViewed";
 import MyView from "./Screens/MyView";
+import { allBlogPosts } from "./Screens/CreatePost";
+import SingleBlogPost from "./Screens/SingleBlogPost";
+import FullPost from "./Screens/FullPost";
 function App() {
   const [currentTheme, setCurrentTheme] = useState(true);
 
@@ -26,7 +29,17 @@ function App() {
       <div className="App" style={Style}>
         <Routes>
           <Route path="/" element={<StoryBoard />}>
-            <Route index element={<Trending />} />
+            <Route path="/storyboard" element={<Trending />}>
+              <Route path=":postName" element={<FullPost />} />;
+            </Route>
+            <Route
+              path="*"
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>There's nothing here!</p>
+                </main>
+              }
+            />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/most-viewed" element={<MostViewed />} />
             <Route path="/my-view" element={<MyView />} />

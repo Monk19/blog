@@ -1,6 +1,7 @@
 import { memo, React, useEffect, useState } from "react";
 import { allBlogPosts } from "./CreatePost";
-const SingleBlogPost = ({ posts, blogSelect, index }) => {
+import { Link } from "react-router-dom";
+const SingleBlogPost = ({ posts, blogSelect, index, children }) => {
   console.log("child re-rendered");
   const [viewLikeStatusState, setViewLikeStatusState] = useState({
     like: 0,
@@ -17,13 +18,13 @@ const SingleBlogPost = ({ posts, blogSelect, index }) => {
     //   comment: allBlogPosts[index].comment ? allBlogPosts[index].comment : 0,
     // });
   };
-  const kissStupid = (x) => {
+  const postStatus = (x) => {
     console.log(allBlogPosts[index]);
     if (allBlogPosts[index][x]) {
       // console.log(allBlogPosts[index][x]);
       setViewLikeStatusState((prev) => ({
         ...prev,
-        x: (viewLikeStatusState.view += 1),
+        x: (viewLikeStatusState[x] += 1),
       }));
     } else {
       allBlogPosts[index][x] = 1;
@@ -38,28 +39,14 @@ const SingleBlogPost = ({ posts, blogSelect, index }) => {
   }, []);
   return (
     <div style={Styles} className="single-post">
-      <h1
-        className="blog-post-head"
-        onClick={() => {
-          blogSelect(index);
-        }}
-      >
-        {posts.blogHeading}
-      </h1>
-      <p
-        className="blog-post-Description"
-        onClick={() => {
-          blogSelect(index);
-        }}
-      >
-        {posts.blogDescription}
-      </p>
+      <h1 className="blog-post-head">{posts.blogHeading}</h1>
+      <p className="blog-post-Description">{posts.blogDescription}</p>
       <div className="view-icons">
         <div>
           <i
             className="fa-solid fa-eye"
             onClick={() => {
-              kissStupid("view");
+              postStatus("view");
             }}
           ></i>
           <span>{viewLikeStatusState.view}</span>
@@ -68,13 +55,18 @@ const SingleBlogPost = ({ posts, blogSelect, index }) => {
           <i
             class="fa-regular fa-thumbs-up"
             onClick={() => {
-              kissStupid("like");
+              postStatus("like");
             }}
-          ></i>{" "}
+          ></i>
           <span>{viewLikeStatusState.like}</span>
         </div>
         <div>
-          <i className="fa-solid fa-comment" onClick={() => {}}></i>{" "}
+          <i
+            className="fa-solid fa-comment"
+            onClick={() => {
+              postStatus("comment");
+            }}
+          ></i>{" "}
           <span>{viewLikeStatusState.comment}</span>
         </div>
       </div>
