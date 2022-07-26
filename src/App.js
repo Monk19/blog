@@ -51,7 +51,12 @@ function App() {
               }
             />
             <Route path="/create-post" element={<CreatePost />} />
-            <Route path="/most-viewed" element={<MostViewed />} />
+            <Route path="/most-viewed" element={<MostViewed />}>
+              <Route
+                path=":postno"
+                element={<FullPost commentCount={commentCount} />}
+              />
+            </Route>
             <Route path="/my-view" element={<MyView />} />
           </Route>
         </Routes>

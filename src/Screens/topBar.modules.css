@@ -183,3 +183,30 @@ img {
   color: rgb(41, 189, 234);
   font-size: 1.3em;
 }
+/* most viewed */
+.views-grid {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 200px 200px 200px;
+  gap: 30px;
+  justify-content: space-evenly;
+  color: rgb(230, 230, 239);
+  margin-top: 10vh;
+  font-family: "Edu VIC WA NT Beginner", cursive;
+  font-size: 1.7em;
+}
+.views-grid > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  gap: 20px;
+  border: 2px solid rgba(245, 222, 179, 0.33);
+  border-radius: 10px;
+  box-shadow: 0px 15px 25px rgba(90, 79, 79, 0.494);
+  background-color: rgba(45, 46, 47, 0.424);
+}
+a {
+  font-family: "Kanit", sans-serif;
+  font-size: 1.3em;
+}
