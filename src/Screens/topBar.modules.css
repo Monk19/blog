@@ -83,7 +83,7 @@ textarea {
 .blog-post {
   display: flex;
   flex-direction: column;
-  /* width: 80%; */
+  width: 80%;
   margin: auto;
   /* border-radius: 15px */
   max-height: 100vh;
@@ -100,6 +100,10 @@ textarea {
 }
 .blog-post-head {
   font-family: "Edu VIC WA NT Beginner", cursive;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 2em;
+  color: rgb(232, 176, 54);
   /* color: rgb(215, 190, 170); */
 }
 p.blog-post-Description {
@@ -113,12 +117,52 @@ p.blog-post-Description {
   position: fixed;
   top: 0px;
   background-color: rgb(52 52 46 / 87);
-  max-height: 100vh;
+  height: 100vh;
   overflow-y: scroll;
+  width: 100%;
+  padding: 1.5em;
 }
 .fullpost-description {
   font-family: "Roboto", sans-serif;
+  width: 80%;
+  padding: 3em;
+  text-align: left;
+  line-height: 3em;
+
   /* color: black; */
+}
+.comment-logo {
+  max-height: 70px;
+  max-width: 70px;
+  background-color: white;
+  border-radius: 35px;
+}
+.enter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* .enter-section div {
+  text-align: center;
+} */
+.enter-comment-section {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  gap: 20px;
+}
+.cmt-img {
+  max-width: 60px;
+  max-height: 60px;
+  background-color: wheat;
+  border-radius: 40px;
+}
+.comments-posted {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 .blog-img {
   align-self: flex-start;

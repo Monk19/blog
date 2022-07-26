@@ -14,9 +14,12 @@ import SingleBlogPost from "./Screens/SingleBlogPost";
 import FullPost from "./Screens/FullPost";
 function App() {
   const [currentTheme, setCurrentTheme] = useState(true);
-
+  const [cmntCOunt, setCmntCount] = useState();
   const themeToggler = () => {
     setCurrentTheme(!currentTheme);
+  };
+  const commentCount = (n) => {
+    setCmntCount(n);
   };
   const contextValue = { currentTheme, themeToggler };
 
@@ -29,8 +32,15 @@ function App() {
       <div className="App" style={Style}>
         <Routes>
           <Route path="/" element={<StoryBoard />}>
-            <Route path="/storyboard" element={<Trending />}>
-              <Route path=":postName" element={<FullPost />} />;
+            <Route
+              path="/storyboard"
+              element={<Trending cmntCOunt={cmntCOunt} />}
+            >
+              <Route
+                path=":postName"
+                element={<FullPost commentCount={commentCount} />}
+              />
+              ;
             </Route>
             <Route
               path="*"

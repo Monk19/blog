@@ -4,7 +4,7 @@ import { allBlogPosts } from "./CreatePost";
 import FullPost from "./FullPost";
 import SingleBlogPost from "./SingleBlogPost";
 import { Outlet, Link, useParams, useLocation } from "react-router-dom";
-export default function Trending() {
+export default function Trending({ cmntCount }) {
   // let {}
   // const [blogViewStatus, setBlogViewStatus] = useState(false);
   const [index, setIndex] = useState("");
@@ -23,13 +23,12 @@ export default function Trending() {
       <div className="blog-post">
         {allBlogPosts.map((post, index) => {
           return (
-            <Link to={`/storyboard/${index}`}>
-              <SingleBlogPost
-                key={JSON.stringify(index)}
-                posts={post}
-                index={index}
-              />
-            </Link>
+            <SingleBlogPost
+              key={JSON.stringify(index)}
+              posts={post}
+              index={index}
+              cmntCount={cmntCount}
+            />
           );
         })}
       </div>
