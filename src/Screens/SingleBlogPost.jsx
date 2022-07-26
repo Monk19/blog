@@ -8,9 +8,7 @@ const SingleBlogPost = ({ posts, blogSelect, index, children, cmntCount }) => {
     comment: 0,
     view: 0,
   });
-  const Styles = {
-    backgroundImage: `url(${posts.selectedImage})}`,
-  };
+
   const viewStatus = () => {
     setViewLikeStatusState((prev) => ({
       like: allBlogPosts[index].like ? allBlogPosts[index].like + 1 : 0,
@@ -40,7 +38,7 @@ const SingleBlogPost = ({ posts, blogSelect, index, children, cmntCount }) => {
     console.log(allBlogPosts);
   }, []);
   return (
-    <div style={Styles} className="single-post">
+    <div className="single-post">
       <Link
         to={`/storyboard/${index}`}
         onClick={() => {
