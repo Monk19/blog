@@ -10,13 +10,29 @@ const SideBar = memo(({ tog }) => {
   };
   return (
     <nav className="top-bar" style={Styles}>
-      <button
+      {/* <button
         onClick={() => {
           x.themeToggler();
-        }}
       >
-        {x.currentTheme ? "Dark Mode" : "Day Mode"}
-      </button>
+        }}>
+      </button> */}
+      {x.currentTheme ? (
+        <i
+          className="fa-solid fa-cloud-sun"
+          style={{ fontSize: "30px" }}
+          onClick={() => {
+            x.themeToggler();
+          }}
+        ></i>
+      ) : (
+        <i
+          className="fa-brands fa-wpexplorer"
+          style={{ fontSize: "30px" }}
+          onClick={() => {
+            x.themeToggler();
+          }}
+        ></i>
+      )}
 
       <Link to="/storyboard" style={Styles}>
         story board

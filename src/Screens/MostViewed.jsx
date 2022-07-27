@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import CommonHeader from "./CommonHeader";
 import { allBlogPosts } from "./CreatePost";
 import SingleBlogPost from "./SingleBlogPost";
-export default function MostViewed() {
+import { Outlet } from "react-router-dom";
+export default function MostViewed({ cmntCount }) {
   const maxViewCount = [];
   const fun1 = () => {
     console.log(allBlogPosts);
@@ -21,9 +22,19 @@ export default function MostViewed() {
     <div className="mostviewed-container">
       <CommonHeader />
       <div>Most-Viewed</div>
-      {allBlogPosts.map((Element, index) => {
-        return <SingleBlogPost />;
-      })}
+      <div className="blog-post">
+        {allBlogPosts.map((post, index) => {
+          return (
+            <SingleBlogPost
+              key={JSON.stringify(index)}
+              posts={post}
+              index={index}
+              cmntCount={cmntCount}
+            />
+          );
+        })}
+      </div>
+      <Outlet />
     </div>
   );
 }
