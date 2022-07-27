@@ -13,7 +13,7 @@ const SingleBlogPost = ({ posts, blogSelect, index, children, cmntCount }) => {
     setViewLikeStatusState((prev) => ({
       like: allBlogPosts[index].like ? allBlogPosts[index].like + 1 : 0,
       view: allBlogPosts[index].view ? allBlogPosts[index].view + 1 : 0,
-      comment: allBlogPosts[index].comment ? allBlogPosts[index].comment : 0,
+      comment: allBlogPosts[index].comment ? viewLikeStatusState.comment : 0,
     }));
   };
   const postStatus = (x) => {
@@ -35,7 +35,6 @@ const SingleBlogPost = ({ posts, blogSelect, index, children, cmntCount }) => {
   };
   useEffect(() => {
     viewStatus();
-    console.log(allBlogPosts);
   }, []);
   return (
     <div className="single-post">

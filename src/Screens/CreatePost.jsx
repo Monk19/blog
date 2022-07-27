@@ -1,5 +1,6 @@
 import { useState, React, memo } from "react";
 import CommonHeader from "./CommonHeader";
+import useForm from "../CustomHooks/useForm";
 export const allBlogPosts = [
   {
     blogHeading: "New Blog Post",
@@ -41,7 +42,13 @@ const CreatePost = memo(() => {
     blogDescription: "",
     dispDate: "",
     selectedImage: "",
+    authorName: "",
   });
+  const formSubmited = () => {
+    console.log("Callback function when form is submitted!");
+    console.log("Form Values ", values);
+  };
+  const { values, errors, handleChange, handleSubmit } = useForm(formSubmited);
   return (
     <div className="c-post-container">
       <CommonHeader title={"Create Post"} />
@@ -53,70 +60,86 @@ const CreatePost = memo(() => {
         <input
           type="date"
           id="disp-date"
-          name="birthday"
+          name="dispDate"
           onChange={(e) => {
-            setCurrentPost((prev) => {
-              return {
-                ...prev,
-                dispDate: e.target.value,
-              };
-            });
+            handleChange(e);
           }}
-          value={currentPost.dispDate}
+          value={values.dispDate}
         />
+        <label htmlFor="blogHeading">
+          <b>Blog Heading</b>
+        </label>
         <input
+          name="blogHeading"
           type="text"
           placeholder="Blog Post Heading"
           onChange={(e) => {
-            setCurrentPost((prev) => {
-              return {
-                ...prev,
-                blogHeading: e.target.value,
-              };
-            });
+            handleChange(e);
           }}
-          value={currentPost.blogHeading}
+          value={values.blogHeading}
         ></input>
+        <label htmlFor="blogDescription">
+          <b>Blog Description</b>
+        </label>
         <textarea
-          className="text-area"
+          name="blogDescription"
+          className="blogDescription"
           placeholder="please enter the content"
           onChange={(e) => {
-            setCurrentPost((prev) => {
-              return {
-                ...prev,
-                blogDescription: e.target.value,
-              };
-            });
+            handleChange(e);
           }}
-          value={currentPost.blogDescription}
+          value={values.blogDescription}
         />
+        <label htmlFor="authorName">
+          <b>Author</b>
+        </label>
         <input
-          type="file"
+          name="authorName"
+          type="text"
+          placeholder="Author Name"
           onChange={(e) => {
-            setCurrentPost((prev) => {
-              return {
-                ...prev,
-                selectedImage: URL.createObjectURL(e.target.files[0]),
-              };
-            });
+            handleChange(e);
           }}
+          value={values.autherName}
         />
+        <label htmlFor="selectedImage">
+          <b>Select a background image</b>
+          {/* <i class="fa fa-2x fa-camera"></i> */}
+          <input
+            type="file"
+            name="selectedImage"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            aria-label="File browser example"
+          />
+        </label>
         <button
           type="submit"
           className="sub-btn"
           onClick={(e) => {
             e.preventDefault();
+            handleSubmit(e);
             if (
-              currentPost.blogHeading === "" ||
-              currentPost.blogDescription === "" ||
-              currentPost.dispDate === ""
+              Object.keys(errors).length === 0 &&
+              Object.keys(values).length !== 0 &&
+              Object.keys(values).length === 5
             ) {
-              alert("please enter all fields");
-              return;
-            } else {
-              console.log(currentPost);
-              allBlogPosts.push(currentPost);
+              setCurrentPost(values);
+              console.log(values);
+              allBlogPosts.push(values);
             }
+            // if (
+            //   currentPost.blogHeading === "" ||
+            //   currentPost.blogDescription === "" ||
+            //   currentPost.dispDate === ""
+            // ) {
+            //   alert("please enter all fields");
+            //   return;
+            // } else {
+            //   console.log(currentPost);
+            //   allBlogPosts.push(currentPost);
+            // }
             setCurrentPost({
               blogHeading: "",
               blogDescription: "",

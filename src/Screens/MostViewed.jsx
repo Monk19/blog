@@ -17,7 +17,7 @@ export default function MostViewed({ cmntCount }) {
   };
   useEffect(() => {
     fun1();
-  }, {});
+  }, []);
   return (
     <div className="mostviewed-container">
       <CommonHeader />

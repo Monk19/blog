@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from "react";
 import ChildRerender from "./ChildRerender";
 import CommonHeader from "./CommonHeader";
+import { allBlogPosts } from "./CreatePost";
 
 function MyView() {
   const [stateChange, setStateChange] = useState(1);
@@ -29,7 +30,7 @@ function MyView() {
           <span>
             <i class="fa-solid fa-face-kiss-wink-heart"></i>
           </span>
-          <strong>10</strong>
+          <strong></strong>
         </div>
         {console.log("My view is rendered")}
         <div
@@ -55,7 +56,7 @@ function MyView() {
           <span>
             <i class="fa-solid fa-clone"></i>
           </span>
-          <strong>0</strong>
+          <strong>{allBlogPosts.length}</strong>
         </div>
         <div>
           <h4>Most Viewed autors</h4>
