@@ -10,6 +10,7 @@ function FullPost({ post, blogDeSelect, commentCount }) {
   });
   const navigate = useNavigate();
   const { postName } = useParams();
+  console.log(postName);
 
   useEffect(() => {
     if (allBlogPosts[+postName]["comment"]) {

@@ -28,6 +28,7 @@ export default function Trending({ cmntCount }) {
               posts={post}
               index={index}
               cmntCount={cmntCount}
+              link={`/storyboard/${index}`}
             />
           );
         })}

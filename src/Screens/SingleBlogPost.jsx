@@ -1,7 +1,14 @@
 import { memo, React, useEffect, useState } from "react";
 import { allBlogPosts } from "./CreatePost";
 import { Link } from "react-router-dom";
-const SingleBlogPost = ({ posts, blogSelect, index, children, cmntCount }) => {
+const SingleBlogPost = ({
+  posts,
+  blogSelect,
+  index,
+  children,
+  cmntCount,
+  link,
+}) => {
   console.log("child re-rendered");
   const [viewLikeStatusState, setViewLikeStatusState] = useState({
     like: 0,
@@ -39,7 +46,7 @@ const SingleBlogPost = ({ posts, blogSelect, index, children, cmntCount }) => {
   return (
     <div className="single-post">
       <Link
-        to={`/storyboard/${index}`}
+        to={link}
         onClick={() => {
           postStatus("view");
         }}
@@ -47,7 +54,7 @@ const SingleBlogPost = ({ posts, blogSelect, index, children, cmntCount }) => {
         <h1 className="blog-post-head">{posts.blogHeading}</h1>
       </Link>
       <Link
-        to={`/storyboard/${index}`}
+        to={link}
         onClick={() => {
           postStatus("view");
         }}

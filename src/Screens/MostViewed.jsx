@@ -30,6 +30,7 @@ export default function MostViewed({ cmntCount }) {
               posts={post}
               index={index}
               cmntCount={cmntCount}
+              link={`/most-viewed/${index}`}
             />
           );
         })}
