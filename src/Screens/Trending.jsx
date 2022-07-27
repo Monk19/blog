@@ -14,7 +14,7 @@ export default function Trending({ cmntCount }) {
   //   setBlogViewStatus(!blogViewStatus);
   //   setIndex(index);
   // };
-
+  console.log(window.location.href);
   return (
     <div className="Tending">
       <CommonHeader title={"Trending"} />

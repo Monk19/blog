@@ -1,9 +1,11 @@
 import { React, useEffect, useState } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import ChildRerender from "./ChildRerender";
 import CommonHeader from "./CommonHeader";
 import { allBlogPosts } from "./CreatePost";
 
 function MyView() {
+  const navigate = useNavigate();
   const [stateChange, setStateChange] = useState(1);
   const [x, setx] = useState(1);
   console.log("loged");

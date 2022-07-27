@@ -142,7 +142,7 @@ p.blog-post-Description {
 }
 .fullpost-description {
   font-family: "Roboto", sans-serif;
-  width: 80%;
+  /* width: 80%; */
   padding: 3em;
   text-align: left;
   line-height: 3em;
