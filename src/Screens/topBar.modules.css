@@ -49,6 +49,7 @@ input[type="search"] {
   text-align: center;
   border-radius: 20px;
 }
+
 /*  */
 /* Tending */
 .Tending {
@@ -118,8 +119,16 @@ textarea {
   display: inherit;
   flex-direction: column;
   background-color: rgb(66, 71, 75);
+  position: relative;
   /* border: 1px solid rgb(223, 164, 45);
   box-shadow: 0px 1px 5px rgb(218, 166, 115); */
+}
+figure img {
+  position: absolute;
+  top: 0px;
+  overflow: hidden;
+  object-fit: cover;
+  /* z-index: ; */
 }
 .blog-post-head {
   font-family: "Edu VIC WA NT Beginner", cursive;
