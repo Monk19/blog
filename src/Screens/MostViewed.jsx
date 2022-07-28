@@ -4,6 +4,8 @@ import { allBlogPosts } from "./CreatePost";
 import SingleBlogPost from "./SingleBlogPost";
 import { Outlet } from "react-router-dom";
 export default function MostViewed({ cmntCount }) {
+  console.log(window.location.href);
+
   const maxViewCount = [];
   const fun1 = () => {
     console.log(allBlogPosts);
@@ -30,6 +32,7 @@ export default function MostViewed({ cmntCount }) {
               posts={post}
               index={index}
               cmntCount={cmntCount}
+              link={`/most-viewed/${index}`}
             />
           );
         })}

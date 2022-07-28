@@ -42,18 +42,18 @@ function App() {
               />
               ;
             </Route>
-            <Route
+            {/* <Route
               path="*"
               element={
                 <main style={{ padding: "1rem" }}>
                   <p>There's nothing here!</p>
                 </main>
               }
-            />
+            /> */}
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/most-viewed" element={<MostViewed />}>
               <Route
-                path=":postno"
+                path=":postName"
                 element={<FullPost commentCount={commentCount} />}
               />
             </Route>

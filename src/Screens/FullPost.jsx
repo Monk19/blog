@@ -4,12 +4,19 @@ import { useParams, useNavigate } from "react-router-dom";
 import logo from "../assets/images/950079.png";
 
 function FullPost({ post, blogDeSelect, commentCount }) {
+  // window.history.pushState(
+  //   {},
+  //   undefined,
+  //   " http://localhost:3000/most-viewed/1"
+  // );
+
   const [comment, setComment] = useState({
     allComments: ["made a comment"],
     currentComment: "",
   });
   const navigate = useNavigate();
   const { postName } = useParams();
+  console.log(postName);
 
   useEffect(() => {
     if (allBlogPosts[+postName]["comment"]) {

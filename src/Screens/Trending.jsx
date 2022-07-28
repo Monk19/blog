@@ -14,7 +14,7 @@ export default function Trending({ cmntCount }) {
   //   setBlogViewStatus(!blogViewStatus);
   //   setIndex(index);
   // };
-
+  console.log(window.location.href);
   return (
     <div className="Tending">
       <CommonHeader title={"Trending"} />
@@ -28,6 +28,7 @@ export default function Trending({ cmntCount }) {
               posts={post}
               index={index}
               cmntCount={cmntCount}
+              link={`/storyboard/${index}`}
             />
           );
         })}
