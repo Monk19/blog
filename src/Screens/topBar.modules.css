@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: start;
   flex-wrap: wrap;
+  width: 15vw;
 }
 nav {
   height: 100vh;
@@ -39,8 +40,15 @@ button {
   justify-content: space-evenly;
   background-color: rgb(103 159 207);
   padding: 15px;
+  /* min-width: 40vw; */
 }
-
+input[type="search"] {
+  border: none;
+  width: 20vw;
+  height: 30px;
+  text-align: center;
+  border-radius: 20px;
+}
 /*  */
 /* Tending */
 .Tending {
@@ -123,6 +131,7 @@ textarea {
 }
 p.blog-post-Description {
   max-height: 80px;
+  min-width: 100%;
   line-height: 2em;
   overflow: hidden;
   padding: 5px;

@@ -4,7 +4,8 @@ import { allBlogPosts } from "./CreatePost";
 import FullPost from "./FullPost";
 import SingleBlogPost from "./SingleBlogPost";
 import { Outlet, Link, useParams, useLocation } from "react-router-dom";
-export default function Trending({ cmntCount }) {
+import SearchByGenerComponetHoc from "./SearchByGenerComponetHoc";
+const Trending = ({ cmntCount }) => {
   // let {}
   // const [blogViewStatus, setBlogViewStatus] = useState(false);
   const [index, setIndex] = useState("");
@@ -14,23 +15,49 @@ export default function Trending({ cmntCount }) {
   //   setBlogViewStatus(!blogViewStatus);
   //   setIndex(index);
   // };
-  console.log(window.location.href);
+  const [search, setSearch] = useState("");
+  const makeSearch = (searchWord) => {
+    setSearch(searchWord);
+    console.log(searchWord);
+  };
+  // console.log(window.location.href);
+
   return (
     <div className="Tending">
-      <CommonHeader title={"Trending"} />
+      <CommonHeader title={"Trending"} searchFun={makeSearch} />
       <div>Trending</div>
 
       <div className="blog-post">
         {allBlogPosts.map((post, index) => {
-          return (
-            <SingleBlogPost
-              key={JSON.stringify(index)}
-              posts={post}
-              index={index}
-              cmntCount={cmntCount}
-              link={`/storyboard/${index}`}
-            />
-          );
+          for (var i = 0; i < post.gener.length; i++) {
+            if (search !== " ") {
+              if (
+                post.gener[i]
+                  .toLocaleLowerCase()
+                  .match(search.toLocaleLowerCase())
+              ) {
+                return (
+                  <SingleBlogPost
+                    key={JSON.stringify(index)}
+                    posts={post}
+                    index={index}
+                    cmntCount={cmntCount}
+                    link={`/storyboard/${index}`}
+                  />
+                );
+              }
+            } else {
+              return (
+                <SingleBlogPost
+                  key={JSON.stringify(index)}
+                  posts={post}
+                  index={index}
+                  cmntCount={cmntCount}
+                  link={`/storyboard/${index}`}
+                />
+              );
+            }
+          }
         })}
       </div>
       <Outlet />
@@ -41,4 +68,5 @@ export default function Trending({ cmntCount }) {
       /> */}
     </div>
   );
-}
+};
+export default SearchByGenerComponetHoc(Trending);

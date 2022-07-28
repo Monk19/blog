@@ -1,6 +1,7 @@
-import { useState, React, memo } from "react";
+import { useState, React, memo, useCallback } from "react";
 import CommonHeader from "./CommonHeader";
 import useForm from "../CustomHooks/useForm";
+import CreatableSelect from "react-select/creatable";
 export const allBlogPosts = [
   {
     blogHeading: "New Blog Post",
@@ -9,6 +10,7 @@ export const allBlogPosts = [
     dispDate: "2022-07-27",
     selectedImage:
       "blob:http://localhost:3000/69ca3b50-95d9-46c6-8813-d03169b4f910",
+    gener: ["comdey", "Rom-com", "sit-com"],
   },
   {
     blogHeading: "The Lottery",
@@ -34,16 +36,34 @@ Mrs. Hutchinson craned her neck to see through the crowd and found her husband a
     dispDate: "2022-07-27",
     selectedImage:
       "blob:http://localhost:3000/69ca3b50-95d9-46c6-8813-d03169b4f910",
+    gener: ["x", "comdey", "Rom-com", "sit-com"],
   },
 ];
 const CreatePost = memo(() => {
+  const [options, setOptions] = useState([
+    { value: "Thriller", label: "Thriller" },
+    { value: "scifi", label: "scifi" },
+    { value: "Advanture", label: "Adventure" },
+    { value: "Comedy", label: "Comedy" },
+  ]);
+  const [value, setValue] = useState([]);
   const [currentPost, setCurrentPost] = useState({
     blogHeading: "",
     blogDescription: "",
     dispDate: "",
     selectedImage: "",
     authorName: "",
+    gener: [],
   });
+  const handleOption = (inputVal) => {
+    setValue(inputVal);
+  };
+  const handleCreate = (inputval) => {
+    const newValue = { value: inputval.toLowerCase(), label: inputval };
+    setOptions((prev) => [...prev, newValue]);
+    setValue([...value, newValue]);
+  };
+
   const formSubmited = () => {
     console.log("Callback function when form is submitted!");
     console.log("Form Values ", values);
@@ -90,9 +110,19 @@ const CreatePost = memo(() => {
           }}
           value={values.blogDescription}
         />
+        <CreatableSelect
+          isMulti
+          isClearable
+          value={value}
+          onChange={handleOption}
+          onCreateOption={handleCreate}
+          options={options}
+          styles={{ backgroundColor: "black" }}
+        />
         <label htmlFor="authorName">
           <b>Author</b>
         </label>
+
         <input
           name="authorName"
           type="text"
@@ -125,9 +155,19 @@ const CreatePost = memo(() => {
               Object.keys(values).length !== 0 &&
               Object.keys(values).length === 5
             ) {
-              setCurrentPost(values);
-              console.log(values);
-              allBlogPosts.push(values);
+              const catArray = [];
+              for (const x of value) {
+                catArray.push(x.value);
+              }
+              setCurrentPost({
+                ...values,
+                gener: catArray,
+              });
+              allBlogPosts.push({
+                ...values,
+                gener: catArray,
+              });
+              console.log(allBlogPosts);
             }
             // if (
             //   currentPost.blogHeading === "" ||

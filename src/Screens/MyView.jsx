@@ -6,17 +6,23 @@ import { allBlogPosts } from "./CreatePost";
 
 function MyView() {
   const navigate = useNavigate();
-  const [stateChange, setStateChange] = useState(1);
-  const [x, setx] = useState(1);
-  console.log("loged");
+  const [profiler, setProfiler] = useState({});
+  // const [x, setx] = useState(1);
+
   useEffect(() => {
-    console.log("UseEffect Ran");
+    // console.log("UseEffect Ran");
     // setTimeout(() => {
     //   console.log("time out function rendered with useEffect");
     // }, 1000);
-    return () => {
-      console.log("clean up");
+    // return () => {
+    //   console.log("clean up");
+    // };
+    const mostViews = () => {
+      allBlogPosts.map((post, index) => {});
     };
+    const mostCommented = () => {};
+    const mostLiked = () => {};
+    const mostViewedAuthor = () => {};
   }, []);
   return (
     <div className="myview-container">
@@ -25,7 +31,7 @@ function MyView() {
       <div className="views-grid">
         <div
           onClick={() => {
-            setStateChange((prev) => prev + 1);
+            // setStateChange((prev) => prev + 1);
           }}
         >
           <h4>Most Liked</h4>

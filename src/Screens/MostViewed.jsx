@@ -1,9 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CommonHeader from "./CommonHeader";
 import { allBlogPosts } from "./CreatePost";
 import SingleBlogPost from "./SingleBlogPost";
 import { Outlet } from "react-router-dom";
-export default function MostViewed({ cmntCount }) {
+import SearchByGenerComponetHoc from "./SearchByGenerComponetHoc";
+const MostViewed = ({ cmntCount }) => {
+  const [search, setSearch] = useState("");
+  const makeSearch = (searchWord) => {
+    console.log(searchWord);
+    setSearch(searchWord);
+  };
   console.log(window.location.href);
 
   const maxViewCount = [];
@@ -22,22 +28,43 @@ export default function MostViewed({ cmntCount }) {
   }, []);
   return (
     <div className="mostviewed-container">
-      <CommonHeader />
+      <CommonHeader searchFun={makeSearch} />
       <div>Most-Viewed</div>
       <div className="blog-post">
         {allBlogPosts.map((post, index) => {
-          return (
-            <SingleBlogPost
-              key={JSON.stringify(index)}
-              posts={post}
-              index={index}
-              cmntCount={cmntCount}
-              link={`/most-viewed/${index}`}
-            />
-          );
+          for (var i = 0; i < post.gener.length; i++) {
+            if (search !== " ") {
+              if (
+                post.gener[i]
+                  .toLocaleLowerCase()
+                  .match(search.toLocaleLowerCase())
+              ) {
+                return (
+                  <SingleBlogPost
+                    key={JSON.stringify(index)}
+                    posts={post}
+                    index={index}
+                    cmntCount={cmntCount}
+                    link={`/most-viewed/${index}`}
+                  />
+                );
+              }
+            } else {
+              return (
+                <SingleBlogPost
+                  key={JSON.stringify(index)}
+                  posts={post}
+                  index={index}
+                  cmntCount={cmntCount}
+                  link={`/most-viewed/${index}`}
+                />
+              );
+            }
+          }
         })}
       </div>
       <Outlet />
     </div>
   );
-}
+};
+export default SearchByGenerComponetHoc(MostViewed);
