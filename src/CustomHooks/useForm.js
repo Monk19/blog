@@ -79,10 +79,18 @@ function useForm(callback) {
     let name = event.target.name;
     let value = event.target.value;
     validate(event, name, value);
-    setValues({
-      ...values,
-      [name]: value,
-    });
+
+    if (name === "selectedImage") {
+      setValues({
+        ...values,
+        [name]: URL.createObjectURL(event.target.files[0]),
+      });
+    } else {
+      setValues({
+        ...values,
+        [name]: value,
+      });
+    }
   };
   const handleSubmit = (event) => {
     if (event) {

@@ -45,6 +45,9 @@ const SingleBlogPost = ({
   }, []);
   return (
     <div className="single-post">
+      <figure className="thumbnail">
+        <img src={posts.selectedImage} />
+      </figure>
       <Link
         to={link}
         onClick={() => {
