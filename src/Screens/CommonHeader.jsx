@@ -1,5 +1,5 @@
 import { React, memo, useState } from "react";
-
+import logout from "../assets/images/icons8-logout-rounded-down-64.png";
 const CommonHeader = memo(({ title, searchFun }) => {
   // const [searchValue, setSearchValue] = useState("");
   return (
@@ -22,6 +22,15 @@ const CommonHeader = memo(({ title, searchFun }) => {
             searchFun(e.target.value);
           }}
         ></input>
+      </div>
+      <div>
+        <img
+          className="logout-btn"
+          src={logout}
+          alt="logout"
+          onClick={() => {}}
+          style={{ width: "30px" }}
+        />
       </div>
     </div>
   );

@@ -46,6 +46,9 @@ const SideBar = memo(({ tog }) => {
       <Link to="/my-view" style={Styles}>
         My Views
       </Link>
+      <Link to="/login" style={Styles}>
+        login
+      </Link>
     </nav>
   );
 });

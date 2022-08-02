@@ -12,6 +12,7 @@ import MyView from "./Screens/MyView";
 import { allBlogPosts } from "./Screens/CreatePost";
 import SingleBlogPost from "./Screens/SingleBlogPost";
 import FullPost from "./Screens/FullPost";
+import Login from "./Screens/LogScreens/Login";
 function App() {
   const [currentTheme, setCurrentTheme] = useState(true);
   const [cmntCOunt, setCmntCount] = useState();
@@ -58,6 +59,7 @@ function App() {
               />
             </Route>
             <Route path="/my-view" element={<MyView />} />
+            <Route path="/login" element={<Login />} />
           </Route>
         </Routes>
       </div>
