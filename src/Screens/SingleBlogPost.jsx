@@ -1,6 +1,7 @@
 import { memo, React, useEffect, useState } from "react";
 import { allBlogPosts } from "./CreatePost";
 import { Link } from "react-router-dom";
+import SearchByGenerComponetHoc from "./SearchByGenerComponetHoc";
 const SingleBlogPost = ({
   posts,
   blogSelect,
@@ -18,30 +19,31 @@ const SingleBlogPost = ({
 
   const viewStatus = () => {
     setViewLikeStatusState((prev) => ({
-      like: allBlogPosts[index].like ? allBlogPosts[index].like + 1 : 0,
-      view: allBlogPosts[index].view ? allBlogPosts[index].view + 1 : 0,
+      like: allBlogPosts[index].like ? allBlogPosts[index].like : 0,
+      view: allBlogPosts[index].view ? allBlogPosts[index].view : 0,
       comment: allBlogPosts[index].comment ? viewLikeStatusState.comment : 0,
     }));
   };
   const postStatus = (x) => {
-    console.log(allBlogPosts[index]);
+    console.log(allBlogPosts[index][x]);
     if (allBlogPosts[index][x]) {
       // console.log(allBlogPosts[index][x]);
+      allBlogPosts[index][x] += 1;
       setViewLikeStatusState((prev) => ({
         ...prev,
         [x]: viewLikeStatusState[x] + 1,
       }));
-      allBlogPosts[index][x] = viewLikeStatusState[x];
     } else {
+      allBlogPosts[index][x] = 1;
       setViewLikeStatusState((prev) => ({
         ...prev,
         [x]: 1,
       }));
-      allBlogPosts[index][x] = 1;
     }
   };
   useEffect(() => {
     viewStatus();
+    console.log(allBlogPosts);
   }, []);
   return (
     <div className="single-post">

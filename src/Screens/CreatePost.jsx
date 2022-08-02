@@ -36,6 +36,7 @@ Mrs. Hutchinson craned her neck to see through the crowd and found her husband a
     dispDate: "2022-07-27",
     selectedImage:
       "blob:http://localhost:3000/69ca3b50-95d9-46c6-8813-d03169b4f910",
+
     gener: ["x", "comdey", "Rom-com", "sit-com"],
   },
 ];
@@ -53,6 +54,9 @@ const CreatePost = memo(() => {
     dispDate: "",
     selectedImage: "",
     authorName: "",
+    view: "",
+    like: "",
+    comment: "",
     gener: [],
   });
   const handleOption = (inputVal) => {
@@ -161,6 +165,7 @@ const CreatePost = memo(() => {
               }
               setCurrentPost({
                 ...values,
+
                 gener: catArray,
               });
               allBlogPosts.push({

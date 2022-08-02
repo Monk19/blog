@@ -5,6 +5,7 @@ import FullPost from "./FullPost";
 import SingleBlogPost from "./SingleBlogPost";
 import { Outlet, Link, useParams, useLocation } from "react-router-dom";
 import SearchByGenerComponetHoc from "./SearchByGenerComponetHoc";
+
 const Trending = ({ cmntCount }) => {
   // let {}
   // const [blogViewStatus, setBlogViewStatus] = useState(false);
