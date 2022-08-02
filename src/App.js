@@ -1,7 +1,7 @@
 import "./App.css";
 import { ThemeContext } from "./Screens/SideBar";
 import { useState, useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Redirect } from "react-router-dom";
 import About from "./Screens/Trending";
 import Profile from "./Screens/CreatePost";
 import StoryBoard from "./Screens/StoryBoard";

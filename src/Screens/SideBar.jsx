@@ -2,8 +2,10 @@ import "./topBar.modules.css";
 import { useContext, useState, createContext, React, memo } from "react";
 import { Link } from "react-router-dom";
 export const ThemeContext = createContext({});
+export const LogContext = createContext(false);
 const SideBar = memo(({ tog }) => {
   const x = useContext(ThemeContext);
+  const isLogged = useContext(LogContext);
   console.log(x);
   const Styles = {
     color: x.currentTheme ? "white" : "black",
